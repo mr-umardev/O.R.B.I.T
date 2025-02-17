@@ -136,11 +136,12 @@ def is_jarvis_running():
     return False
 
 def run_jarvis():
-    """Function to run Jarvis in a separate thread."""
+    """Function to run Jarvis in a separate process."""
     jarvis_path = os.path.join(os.path.dirname(__file__), "jarvis.py")
     python_exec = sys.executable
     if os.path.exists(jarvis_path):
-        subprocess.Popen([python_exec, jarvis_path], shell=True)  # Run jarvis.py asynchronously
+        # Launch jarvis.py as a background subprocess
+        subprocess.Popen([python_exec, jarvis_path], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     else:
         st.error(f"Jarvis.py not found at: {jarvis_path}")
 
@@ -152,13 +153,13 @@ if "page" not in st.session_state:
 if st.session_state["page"] == "loading_video":
     set_background_video("IronStartUp.mp4")
     st.write("**Starting Jarvis... Please Wait...**")
-    time.sleep(5)  # Reduced waiting time
+    time.sleep(2)  # Shorter wait time
 
-    # Run Jarvis in a separate thread to avoid blocking Streamlit app
-    jarvis_thread = threading.Thread(target=run_jarvis)
-    jarvis_thread.start()
+    # Run Jarvis in the background
+    with st.spinner('Starting Jarvis...'):
+        run_jarvis()
 
-    # Change page to jarvis running
+    # Change to the jarvis page
     st.session_state["page"] = "jarvis_page"
 
 # Jarvis running page
