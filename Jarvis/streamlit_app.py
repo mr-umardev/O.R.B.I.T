@@ -7,7 +7,9 @@ import base64
 import psutil
 import threading
 from gtts import gTTS
-import tempfile
+import random
+import string
+import shutil
 
 def get_base64_video(video_path):
     """Converts video file to base64 for embedding."""
@@ -150,11 +152,23 @@ def run_jarvis():
 def speak(text):
     """Uses gTTS to generate and play speech in the browser."""
     tts = gTTS(text=text, lang='en')
+
+    # Create a random folder
+    random_folder = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
+    temp_dir = os.path.join(os.path.dirname(__file__), random_folder)
     
-    # Save the speech to a temporary file and play it via Streamlit
-    with tempfile.NamedTemporaryFile(delete=True) as temp_audio:
-        tts.save(temp_audio.name)
-        st.audio(temp_audio.name, format="audio/mp3")
+    # Ensure the folder exists
+    os.makedirs(temp_dir, exist_ok=True)
+
+    # Save the audio file to the random folder
+    audio_path = os.path.join(temp_dir, "output.mp3")
+    tts.save(audio_path)
+
+    # Stream the audio using Streamlit
+    st.audio(audio_path, format="audio/mp3")
+
+    # Optionally, clean up the folder after use (if needed)
+    # shutil.rmtree(temp_dir)  # Uncomment if you want to remove the folder after playing the audio
 
 # Page state management
 if "page" not in st.session_state:
