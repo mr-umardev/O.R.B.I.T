@@ -6,6 +6,8 @@ import time
 import base64
 import psutil
 import threading
+from gtts import gTTS
+import tempfile
 
 def get_base64_video(video_path):
     """Converts video file to base64 for embedding."""
@@ -145,6 +147,15 @@ def run_jarvis():
     else:
         st.error(f"Jarvis.py not found at: {jarvis_path}")
 
+def speak(text):
+    """Uses gTTS to generate and play speech in the browser."""
+    tts = gTTS(text=text, lang='en')
+    
+    # Save the speech to a temporary file and play it via Streamlit
+    with tempfile.NamedTemporaryFile(delete=True) as temp_audio:
+        tts.save(temp_audio.name)
+        st.audio(temp_audio.name, format="audio/mp3")
+
 # Page state management
 if "page" not in st.session_state:
     st.session_state["page"] = "home"
@@ -158,6 +169,9 @@ if st.session_state["page"] == "loading_video":
     # Run Jarvis in the background
     with st.spinner('Starting Jarvis...'):
         run_jarvis()
+
+    # Use a background thread to handle speech
+    threading.Thread(target=speak, args=("Jarvis is now active, ready for your commands.",)).start()
 
     # Change to the jarvis page
     st.session_state["page"] = "jarvis_page"
