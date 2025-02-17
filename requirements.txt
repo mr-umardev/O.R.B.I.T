@@ -6,3 +6,4 @@ wikipedia-api~=0.5.4
 pyautogui~=0.9.53
 pyjokes~=0.6
 altair~=4.2.0
+gTTS
