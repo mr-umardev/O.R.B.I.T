@@ -151,11 +151,7 @@ if st.session_state["page"] == "loading_video":
     # Check if jarvis.py exists before running
     if os.path.exists(jarvis_path):
         if not is_jarvis_running():
-            subprocess.Popen(
-                [python_exec, jarvis_path],  
-                creationflags=subprocess.CREATE_NEW_CONSOLE,
-                shell=True
-            )
+            subprocess.Popen([python_exec, jarvis_path], shell=True)  # Removed creationflags
             st.session_state["page"] = "jarvis_page"
         else:
             st.warning("Jarvis is already running.")
@@ -166,25 +162,21 @@ if st.session_state["page"] == "loading_video":
 
 # Jarvis running page
 elif st.session_state["page"] == "jarvis_page":
-    # Loop the background video sequence
-    while True:
-        set_background_video("IronStartUp.mp4")
-        st.title("Jarvis is Running...")
-        st.write("You can now use voice commands.")
+    # Play the sequence of videos one after the other
+    set_background_video("IronStartUp.mp4")
+    st.title("Jarvis is Running...")
+    st.write("You can now use voice commands.")
+    time.sleep(30)  # Duration of IronStartUp.mp4
 
-        # Play the next video after a delay
-        time.sleep(30)  # Duration of first video
-        set_background_video("TechIron.mp4")
+    set_background_video("TechIron.mp4")
+    time.sleep(30)  # Duration of TechIron.mp4
 
-        # Play the next video after a delay
-        time.sleep(30)  # Duration of second video
-        set_background_video("Hologram.mp4")
+    set_background_video("Hologram.mp4")
+    time.sleep(30)  # Duration of Hologram.mp4
 
-        # Continue looping the sequence
-        time.sleep(30)  # Duration of third video
-
-        if st.button("Back to Home"):
-            st.session_state["page"] = "home"
+    # Continue to display content
+    if st.button("Back to Home"):
+        st.session_state["page"] = "home"
 
 # Home page
 else:
