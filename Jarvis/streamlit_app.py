@@ -3,22 +3,32 @@ import subprocess
 import sys
 import os
 import time
-import random
-import string
-from gtts import gTTS
+import base64
 import psutil
 import threading
+from gtts import gTTS
+import random
+import string
+import shutil
 
-def get_base64_video(video_path):
+# Ensure the correct folder structure for video files
+VIDEO_FOLDER = os.path.dirname(os.path.abspath(__file__))  # Path to current directory (where all files are)
+
+def get_base64_video(video_name):
     """Converts video file to base64 for embedding."""
+    video_path = os.path.join(VIDEO_FOLDER, video_name)
+    st.write(f"Attempting to load video: {video_path}")  # Debugging line
+    if not os.path.exists(video_path):
+        st.error(f"Video file not found: {video_path}")
+        return ""
+    
     with open(video_path, "rb") as video_file:
         return base64.b64encode(video_file.read()).decode()
 
 def set_background_video(video_name):
     """Sets the background video using base64 encoded video."""
-    video_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), video_name)
-    if os.path.exists(video_path):
-        video_base64 = get_base64_video(video_path)
+    video_base64 = get_base64_video(video_name)
+    if video_base64:  # Only set background if the video is found and encoded
         st.markdown(
             f"""
             <style>
@@ -139,7 +149,7 @@ def is_jarvis_running():
 
 def run_jarvis():
     """Function to run Jarvis in a separate process."""
-    jarvis_path = os.path.join(os.path.dirname(__file__), "jarvis.py")
+    jarvis_path = os.path.join(VIDEO_FOLDER, "jarvis.py")
     python_exec = sys.executable
     if os.path.exists(jarvis_path):
         # Launch jarvis.py as a background subprocess
@@ -153,7 +163,7 @@ def speak(text):
 
     # Create a random folder
     random_folder = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
-    temp_dir = os.path.join(os.path.dirname(__file__), random_folder)
+    temp_dir = os.path.join(VIDEO_FOLDER, random_folder)
     
     # Ensure the folder exists
     os.makedirs(temp_dir, exist_ok=True)
