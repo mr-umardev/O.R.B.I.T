@@ -151,7 +151,11 @@ if st.session_state["page"] == "loading_video":
     # Check if jarvis.py exists before running
     if os.path.exists(jarvis_path):
         if not is_jarvis_running():
-            subprocess.Popen([python_exec, jarvis_path], creationflags=subprocess.CREATE_NEW_CONSOLE)
+            subprocess.Popen(
+                [python_exec, jarvis_path],  
+                creationflags=subprocess.CREATE_NEW_CONSOLE,
+                shell=True
+            )
             st.session_state["page"] = "jarvis_page"
             st.rerun()
         else:
@@ -164,19 +168,26 @@ if st.session_state["page"] == "loading_video":
 
 # Jarvis running page
 elif st.session_state["page"] == "jarvis_page":
-    set_background_video("IronStartUp.mp4")
-    st.title("Jarvis is Running...")
-    st.write("You can now use voice commands.")
+    # Loop the background video sequence
+    while True:
+        set_background_video("IronStartUp.mp4")
+        st.title("Jarvis is Running...")
+        st.write("You can now use voice commands.")
 
-    time.sleep(10)  # Duration before switching video
-    set_background_video("TechIron.mp4")
+        # Play the next video after a delay
+        time.sleep(30)  # Duration of first video
+        set_background_video("TechIron.mp4")
 
-    time.sleep(10)
-    set_background_video("Hologram.mp4")
+        # Play the next video after a delay
+        time.sleep(30)  # Duration of second video
+        set_background_video("Hologram.mp4")
 
-    if st.button("Back to Home", key="back_home"):
-        st.session_state["page"] = "home"
-        st.rerun()
+        # Continue looping the sequence
+        time.sleep(30)  # Duration of third video
+
+        if st.button("Back to Home"):
+            st.session_state["page"] = "home"
+            st.rerun()
 
 # Home page
 else:
@@ -187,6 +198,6 @@ else:
     st.markdown('<h1 id="jarvis_title"><span style="font-style: italic;">Welcome to </span><span style="color: #FFD700; font-style: italic;">Jarvis AI</span></h1>', unsafe_allow_html=True)
     st.write("Click the button below to activate Jarvis.")
 
-    if st.button("Run Jarvis", key="run_jarvis"):
+    if st.button("Run Jarvis"):
         st.session_state["page"] = "loading_video"
         st.rerun()
