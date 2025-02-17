@@ -5,6 +5,7 @@ import os
 import time
 import base64
 import psutil
+import threading
 
 def get_base64_video(video_path):
     """Converts video file to base64 for embedding."""
@@ -134,6 +135,15 @@ def is_jarvis_running():
             return True
     return False
 
+def run_jarvis():
+    """Function to run Jarvis in a separate thread."""
+    jarvis_path = os.path.join(os.path.dirname(__file__), "jarvis.py")
+    python_exec = sys.executable
+    if os.path.exists(jarvis_path):
+        subprocess.Popen([python_exec, jarvis_path], shell=True)  # Run jarvis.py asynchronously
+    else:
+        st.error(f"Jarvis.py not found at: {jarvis_path}")
+
 # Page state management
 if "page" not in st.session_state:
     st.session_state["page"] = "home"
@@ -144,21 +154,12 @@ if st.session_state["page"] == "loading_video":
     st.write("**Starting Jarvis... Please Wait...**")
     time.sleep(5)  # Reduced waiting time
 
-    # Correct path to jarvis.py
-    jarvis_path = os.path.join(os.path.dirname(__file__), "jarvis.py")
-    python_exec = sys.executable
+    # Run Jarvis in a separate thread to avoid blocking Streamlit app
+    jarvis_thread = threading.Thread(target=run_jarvis)
+    jarvis_thread.start()
 
-    # Check if jarvis.py exists before running
-    if os.path.exists(jarvis_path):
-        if not is_jarvis_running():
-            subprocess.Popen([python_exec, jarvis_path], shell=True)  # Removed creationflags
-            st.session_state["page"] = "jarvis_page"
-        else:
-            st.warning("Jarvis is already running.")
-            st.session_state["page"] = "jarvis_page"
-    else:
-        st.error(f"Jarvis.py not found at: {jarvis_path}")
-        st.session_state["page"] = "home"
+    # Change page to jarvis running
+    st.session_state["page"] = "jarvis_page"
 
 # Jarvis running page
 elif st.session_state["page"] == "jarvis_page":
