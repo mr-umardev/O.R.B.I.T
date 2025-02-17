@@ -3,13 +3,11 @@ import subprocess
 import sys
 import os
 import time
-import base64
-import psutil
-import threading
-from gtts import gTTS
 import random
 import string
-import shutil
+from gtts import gTTS
+import psutil
+import threading
 
 def get_base64_video(video_path):
     """Converts video file to base64 for embedding."""
