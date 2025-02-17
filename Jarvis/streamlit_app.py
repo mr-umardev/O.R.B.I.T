@@ -157,11 +157,9 @@ if st.session_state["page"] == "loading_video":
                 shell=True
             )
             st.session_state["page"] = "jarvis_page"
-            st.rerun()
         else:
             st.warning("Jarvis is already running.")
             st.session_state["page"] = "jarvis_page"
-            st.rerun()
     else:
         st.error(f"Jarvis.py not found at: {jarvis_path}")
         st.session_state["page"] = "home"
@@ -187,7 +185,6 @@ elif st.session_state["page"] == "jarvis_page":
 
         if st.button("Back to Home"):
             st.session_state["page"] = "home"
-            st.rerun()
 
 # Home page
 else:
@@ -200,4 +197,3 @@ else:
 
     if st.button("Run Jarvis"):
         st.session_state["page"] = "loading_video"
-        st.rerun()
