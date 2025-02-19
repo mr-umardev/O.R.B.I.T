@@ -40,7 +40,7 @@ def set_background_video(video_name):
                     z-index: -1;
                 }}
             </style>
-            <video class="background-video" autoplay muted playsinline>
+            <video class="background-video" autoplay muted playsinline loop>
                 <source src="data:video/mp4;base64,{video_base64}" type="video/mp4">
             </video>
             """,
