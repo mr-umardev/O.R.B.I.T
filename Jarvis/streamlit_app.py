@@ -40,12 +40,21 @@ def set_background_video(video_name):
                     z-index: -1;
                 }}
             </style>
-            <video class="background-video" autoplay muted playsinline>
+            <video id="bgVideo" class="background-video" autoplay muted playsinline>
                 <source src="data:video/mp4;base64,{video_base64}" type="video/mp4">
             </video>
+            <script>
+                var video = document.getElementById("bgVideo");
+                video.onended = function() {{
+                    setTimeout(function() {{
+                        video.play();
+                    }}, 10000); // 10-second delay before looping
+                }};
+            </script>
             """,
             unsafe_allow_html=True
         )
+
 
 def change_title_color():
     """Changes the color of the title every 1 second."""
