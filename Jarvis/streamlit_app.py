@@ -118,7 +118,6 @@ def add_header_navbar_footer():
                 margin-bottom: 40px;
             }
         </style>
-        <div class="header">Jarvis AI - Powered by Streamlit</div>
         <div class="navbar">
             <a href="#">Home</a>
             <a href="#">Features</a>
