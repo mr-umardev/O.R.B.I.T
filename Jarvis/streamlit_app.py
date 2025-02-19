@@ -14,38 +14,58 @@ def get_base64_video(video_path):
     with open(video_path, "rb") as video_file:
         return base64.b64encode(video_file.read()).decode()
 
-def set_background_video(video_name):
-    """Sets the background video using base64 encoded video."""
-    video_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), video_name)
-    if os.path.exists(video_path):
-        video_base64 = get_base64_video(video_path)
-        st.markdown(
-            f"""
-            <style>
-                .stApp {{
-                    background: none;
-                }}
-                .main {{
-                    background: none !important;
-                }}
-                video.background-video {{
-                    position: fixed;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    min-width: 100%;
-                    min-height: 100%;
-                    width: auto;
-                    height: auto;
-                    z-index: -1;
-                }}
-            </style>
-            <video class="background-video" autoplay muted playsinline loop>
-                <source src="data:video/mp4;base64,{video_base64}" type="video/mp4">
-            </video>
-            """,
-            unsafe_allow_html=True
-        )
+def set_background_videos(video_list):
+    """Sets background videos to play in sequence using JavaScript."""
+    video_sources = []
+    for video_name in video_list:
+        video_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), video_name)
+        if os.path.exists(video_path):
+            video_base64 = get_base64_video(video_path)
+            video_sources.append(f'"data:video/mp4;base64,{video_base64}"')
+
+    video_sources_js = "[" + ", ".join(video_sources) + "]"
+
+    st.markdown(
+        f"""
+        <style>
+            .stApp {{
+                background: none;
+            }}
+            .main {{
+                background: none !important;
+            }}
+            video.background-video {{
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                min-width: 100%;
+                min-height: 100%;
+                width: auto;
+                height: auto;
+                z-index: -1;
+            }}
+        </style>
+        <video id="background-video" class="background-video" autoplay muted playsinline>
+            <source id="video-source" src={video_sources[0]} type="video/mp4">
+        </video>
+
+        <script>
+            var videoElement = document.getElementById("background-video");
+            var videoSource = document.getElementById("video-source");
+            var videos = {video_sources_js};
+            var index = 0;
+
+            videoElement.onended = function() {{
+                index = (index + 1) % videos.length;  // Loop through videos
+                videoSource.src = videos[index];
+                videoElement.load();
+                videoElement.play();
+            }};
+        </script>
+        """,
+        unsafe_allow_html=True
+    )
 
 def change_title_color():
     """Changes the color of the title every 1 second."""
