@@ -85,11 +85,11 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 ## 📌Author
 
-👤 **Kishan Kumar Rai**
+👤 **Mohammed R Umar Farooq**
 
 - Twitter: [@kishan_rajput23](https://twitter.com/kishan_rajput23)
 - Github: [@kishanrajput23](https://github.com/kishanrajput23)
-- LinkedIn: [@kishan-kumar-rai](https://linkedin.com/in/kishan-kumar-rai-23112000)
+- LinkedIn: [@kishan-kumar-rai](https://www.linkedin.com/in/mohammed-r-umar-farooq/)
 
 ## 📌Show your support
 
