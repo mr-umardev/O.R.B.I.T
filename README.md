@@ -30,7 +30,7 @@
   <!-- Web Speech API -->
   <code><img height="30" src="https://th.bing.com/th/id/OIP.qur2g2wb3Fc6uqu-CDa4bwHaHa?w=213&h=214&c=7&r=0&o=5&dpr=1.5&pid=1.7" alt="Web Speech API" /></code>
   <!-- Speech Recognition -->
-  <code><img height="30" src="https://cdn-icons-png.flaticon.com/512/1572/1572532.png" alt="Speech Recognition" /></code>
+  <code><img height="30" src="https://th.bing.com/th/id/OIP.3pgWO_fsin1bhVdkmBZ-zgHaHa?w=191&h=191&c=7&r=0&o=5&dpr=1.5&pid=1.7" alt="Speech Recognition" /></code>
 </p>
 
 
