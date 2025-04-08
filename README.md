@@ -24,7 +24,7 @@
   <!-- Lucide React (custom icon or text since no official image available) -->
   <code><img height="30" src="https://img.jsdelivr.com/github.com/lucide-icons.png" alt="Lucide React" /></code>
   <!-- Framer Motion -->
-  <code><img height="30" src="https://seeklogo.com/images/F/framer-motion-logo-DA1E33CAA1-seeklogo.com.png" alt="Framer Motion" /></code>
+  <code><img height="30" src="https://tsh.io/wp-content/uploads/fly-images/32664/framer-motion-logo-1-312x211.png" alt="Framer Motion" /></code>
   <!-- NLP -->
   <code><img height="30" src="https://cdn-icons-png.flaticon.com/512/1048/1048940.png" alt="Natural Language Processing" /></code>
   <!-- Web Speech API -->
