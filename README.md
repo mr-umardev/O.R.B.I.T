@@ -22,7 +22,7 @@
   <!-- Tailwind CSS -->
   <code><img height="30" src="https://raw.githubusercontent.com/github/explore/main/topics/tailwind/tailwind.png" alt="Tailwind CSS" /></code>
   <!-- Lucide React (custom icon or text since no official image available) -->
-  <code><img height="30" src="https://lucide.dev/logo.png" alt="Lucide React" /></code>
+  <code><img height="30" src="https://img.jsdelivr.com/github.com/lucide-icons.png" alt="Lucide React" /></code>
   <!-- Framer Motion -->
   <code><img height="30" src="https://seeklogo.com/images/F/framer-motion-logo-DA1E33CAA1-seeklogo.com.png" alt="Framer Motion" /></code>
   <!-- NLP -->
