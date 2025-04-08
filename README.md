@@ -48,10 +48,14 @@ It can do a lot of cool things, some of them being:
 - Take important note in text file
 - Can take screenshot and save it with custom filename
 - Can tell jokes
+- Change assistant name
+- Search any concept or entity on the web
+
+
 
 ## Requirements
 
-Python 3.6+
+Python 3.10+
 
 ## 📌Author
 
@@ -64,6 +68,3 @@ Python 3.6+
 
 Please ⭐️ this repository if this project helped you!
 
-## 📌License
-
-This project is [MIT](https://choosealicense.com/licenses/mit/) licensed.
