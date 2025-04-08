@@ -26,7 +26,7 @@
   <!-- Framer Motion -->
   <code><img height="30" src="https://tsh.io/wp-content/uploads/fly-images/32664/framer-motion-logo-1-312x211.png" alt="Framer Motion" /></code>
   <!-- NLP -->
-  <code><img height="30" src="https://static.vecteezy.com/system/resources/previews/013/209/266/non_2x/natural-language-processing-blue-gradient-concept-icon-artificial-intelligence-machine-learning-engineer-abstract-idea-thin-line-illustration-isolated-outline-drawing-vector.jpg" alt="Natural Language Processing" /></code>
+  <code><img height="30" src="https://r2.erweima.ai/imgcompressed/compressed_91bfa4c509a38c1749e7074fe3401cf9.webp" alt="Natural Language Processing" /></code>
   <!-- Web Speech API -->
   <code><img height="30" src="https://upload.wikimedia.org/wikipedia/commons/2/21/Speaker_Icon.svg" alt="Web Speech API" /></code>
   <!-- Speech Recognition -->
