@@ -61,8 +61,8 @@ Python 3.10+
 
 👤 **Mohammed R Umar Farooq**
 
-- Github: [@mohammed-r-umar-farooq](https://github.com/mr-umardev)
-- LinkedIn: [@mohammed-r-umar-farooq](https://www.linkedin.com/in/mohammed-r-umar-farooq/)
+- Github: [mr-umardev](https://github.com/mr-umardev)
+- LinkedIn: [mohammed-r-umar-farooq](https://www.linkedin.com/in/mohammed-r-umar-farooq/)
 
 ## 📌Show your support
 
